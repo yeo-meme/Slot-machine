@@ -24,11 +24,50 @@ struct ContentView: View {
                 //header
                 
                 //score
+                HStack{
+                    Text("Your\nCoins".uppercased())
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 10, weight: .bold, design: .rounded))
+                    Text("100")
+                        .foregroundColor(Color.white)
+                        .font(.system(.title, design: .rounded))
+                        .fontWeight(.heavy)
+                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
+                        .layoutPriority(1)
+                }
+                .padding(.vertical,4)
+                .padding(.horizontal, 16)
+                .frame(minWidth: 128)
+                .background(
+                    Capsule()
+                        .foregroundColor(Color("ColorTransparentBlack"))
+                    )
                 //slot machine
                 //footer
+                
+                Spacer()
             }
             //buttons
-        
+            .overlay(
+                Button(action: {
+                    print("Reset the game")
+                }){
+                    Image(systemName: "arrow.2.circleapth.circle")
+                }
+                    .modifier(ButtonModifier()),
+                alignment: .topLeading
+            )
+            
+            .overlay(
+                //info
+                Button(action: {
+                    print("Info View")
+                }) {
+                    Image(systemName: "info.circle")
+                }
+                    .modifier(ButtonModifier()),
+                alignment: .topLeading
+            )
             .padding()
             .frame(maxWidth: 720)
             

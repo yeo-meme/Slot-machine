@@ -13,3 +13,11 @@ struct ShadowModifier: ViewModifier {
             .shadow(color: Color("ColorTransparentBalck"), radius: 0, x: 0, y:6)
     }
 }
+
+struct ButtonModifier : ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .accentColor(Color.white)
+    }
+}
