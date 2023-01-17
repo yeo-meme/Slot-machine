@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Y5-kRd">
+                                <rect key="frame" x="20" y="968" width="434" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gfx-background" translatesAutoresizingMaskIntoConstraints="NO" id="PaV-9f-ZQ0">
+                                <rect key="frame" x="0.0" y="0.0" width="474" height="968"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="gfx-slot-machine" translatesAutoresizingMaskIntoConstraints="NO" id="wwF-DC-rZP">
+                                <rect key="frame" x="46" y="326" width="300" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ZlS-4C-Fh0"/>
+                                    <constraint firstAttribute="height" constant="200" id="iQl-Y4-Sg3"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PaV-9f-ZQ0" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="2Su-mc-cU3"/>
+                            <constraint firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
+                            <constraint firstItem="wwF-DC-rZP" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="384" id="9bB-He-WKK"/>
+                            <constraint firstAttribute="trailing" secondItem="wwF-DC-rZP" secondAttribute="trailing" constant="87" id="OMw-cB-mhD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wwF-DC-rZP" secondAttribute="trailing" constant="30" id="OXI-N3-axS"/>
+                            <constraint firstItem="wwF-DC-rZP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PmO-og-W7d"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="wwF-DC-rZP" secondAttribute="bottom" constant="384" id="QFe-2p-pll"/>
+                            <constraint firstItem="wwF-DC-rZP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="R19-ys-iTj"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
+                            <constraint firstItem="wwF-DC-rZP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="30" id="UOY-OI-VXB"/>
+                            <constraint firstItem="wwF-DC-rZP" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="87" id="XJG-dc-g2P"/>
+                            <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
+                            <constraint firstItem="PaV-9f-ZQ0" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="f0Z-tz-ag3"/>
+                            <constraint firstAttribute="trailing" secondItem="PaV-9f-ZQ0" secondAttribute="trailing" id="wIm-77-Ujt"/>
+                            <constraint firstItem="obG-Y5-kRd" firstAttribute="top" secondItem="PaV-9f-ZQ0" secondAttribute="bottom" id="zgN-9r-VO9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gfx-background" width="3072" height="3072"/>
+        <image name="gfx-slot-machine" width="2118" height="924"/>
+    </resources>
+</document>

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2D77A2297683B80093B024 /* riseup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D779A297683B70093B024 /* riseup.mp3 */; };
+		3E2D77A3297683B80093B024 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D779B297683B70093B024 /* win.mp3 */; };
+		3E2D77A4297683B80093B024 /* chimeup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D779C297683B70093B024 /* chimeup.mp3 */; };
+		3E2D77A5297683B80093B024 /* background-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D779D297683B80093B024 /* background-music.mp3 */; };
+		3E2D77A6297683B80093B024 /* high-score.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D779E297683B80093B024 /* high-score.mp3 */; };
+		3E2D77A7297683B80093B024 /* game-over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D779F297683B80093B024 /* game-over.mp3 */; };
+		3E2D77A8297683B80093B024 /* spin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D77A0297683B80093B024 /* spin.mp3 */; };
+		3E2D77A9297683B80093B024 /* casino-chips.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D77A1297683B80093B024 /* casino-chips.mp3 */; };
+		3E2D77B1297685CC0093B024 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E2D77B0297685CC0093B024 /* Launch Screen.storyboard */; };
 		3E6713C9296C008E00FD9301 /* Slot_machineApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6713C8296C008E00FD9301 /* Slot_machineApp.swift */; };
 		3E6713CB296C008E00FD9301 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6713CA296C008E00FD9301 /* ContentView.swift */; };
 		3E6713CD296C008F00FD9301 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6713CC296C008F00FD9301 /* Assets.xcassets */; };
@@ -14,6 +23,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E2D779A297683B70093B024 /* riseup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = riseup.mp3; sourceTree = "<group>"; };
+		3E2D779B297683B70093B024 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		3E2D779C297683B70093B024 /* chimeup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chimeup.mp3; sourceTree = "<group>"; };
+		3E2D779D297683B80093B024 /* background-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "background-music.mp3"; sourceTree = "<group>"; };
+		3E2D779E297683B80093B024 /* high-score.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "high-score.mp3"; sourceTree = "<group>"; };
+		3E2D779F297683B80093B024 /* game-over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-over.mp3"; sourceTree = "<group>"; };
+		3E2D77A0297683B80093B024 /* spin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spin.mp3; sourceTree = "<group>"; };
+		3E2D77A1297683B80093B024 /* casino-chips.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "casino-chips.mp3"; sourceTree = "<group>"; };
+		3E2D77B0297685CC0093B024 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3E6713C5296C008E00FD9301 /* Slot-machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Slot-machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E6713C8296C008E00FD9301 /* Slot_machineApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slot_machineApp.swift; sourceTree = "<group>"; };
 		3E6713CA296C008E00FD9301 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +50,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2D77AA297683C50093B024 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				3E2D779D297683B80093B024 /* background-music.mp3 */,
+				3E2D77A1297683B80093B024 /* casino-chips.mp3 */,
+				3E2D779C297683B70093B024 /* chimeup.mp3 */,
+				3E2D779F297683B80093B024 /* game-over.mp3 */,
+				3E2D779E297683B80093B024 /* high-score.mp3 */,
+				3E2D779A297683B70093B024 /* riseup.mp3 */,
+				3E2D77A0297683B80093B024 /* spin.mp3 */,
+				3E2D779B297683B70093B024 /* win.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		3E2D77AC297683FB0093B024 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3E2D77AE2976851C0093B024 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3E6713BC296C008E00FD9301 = {
 			isa = PBXGroup;
 			children = (
@@ -51,10 +98,14 @@
 		3E6713C7296C008E00FD9301 /* Slot-machine */ = {
 			isa = PBXGroup;
 			children = (
+				3E2D77AA297683C50093B024 /* Sounds */,
+				3E2D77AE2976851C0093B024 /* Views */,
+				3E2D77AC297683FB0093B024 /* Helpers */,
 				3E6713C8296C008E00FD9301 /* Slot_machineApp.swift */,
 				3E6713CA296C008E00FD9301 /* ContentView.swift */,
 				3E6713CC296C008F00FD9301 /* Assets.xcassets */,
 				3E6713CE296C008F00FD9301 /* Preview Content */,
+				3E2D77B0297685CC0093B024 /* Launch Screen.storyboard */,
 			);
 			path = "Slot-machine";
 			sourceTree = "<group>";
@@ -125,8 +176,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2D77A6297683B80093B024 /* high-score.mp3 in Resources */,
+				3E2D77A2297683B80093B024 /* riseup.mp3 in Resources */,
+				3E2D77A8297683B80093B024 /* spin.mp3 in Resources */,
 				3E6713D0296C008F00FD9301 /* Preview Assets.xcassets in Resources */,
 				3E6713CD296C008F00FD9301 /* Assets.xcassets in Resources */,
+				3E2D77A4297683B80093B024 /* chimeup.mp3 in Resources */,
+				3E2D77B1297685CC0093B024 /* Launch Screen.storyboard in Resources */,
+				3E2D77A5297683B80093B024 /* background-music.mp3 in Resources */,
+				3E2D77A7297683B80093B024 /* game-over.mp3 in Resources */,
+				3E2D77A3297683B80093B024 /* win.mp3 in Resources */,
+				3E2D77A9297683B80093B024 /* casino-chips.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,8 +333,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,8 +362,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
