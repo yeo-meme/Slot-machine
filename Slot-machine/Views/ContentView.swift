@@ -24,24 +24,32 @@ struct ContentView: View {
                 //header
                 
                 //score
-                HStack{
-                    Text("Your\nCoins".uppercased())
-                        .foregroundColor(Color.white)
-                        .font(.system(size: 10, weight: .bold, design: .rounded))
-                    Text("100")
-                        .foregroundColor(Color.white)
-                        .font(.system(.title, design: .rounded))
-                        .fontWeight(.heavy)
-                        .shadow(color: Color("ColorTransparentBlack"), radius: 0, x: 0, y: 3)
-                        .layoutPriority(1)
+                HStack {
+                    HStack{
+                        Text("Your\nCoins".uppercased())
+                            .scoreLabelStyle()
+                            .multilineTextAlignment(.trailing)
+                        
+                        Text("100")
+                            .scoreNumberStyle()
+                            .modifier(ScoreNumberModifier())
+                    }
+                    .modifier(ScoreContainerModifier())
+                    Spacer()
+                    
+                    HStack{
+                        Text("200".uppercased())
+                            .scoreNumberStyle()
+                            .multilineTextAlignment(.trailing)
+                        
+                        Text("High\nScore")
+                            .scoreLabelStyle()
+                            .modifier(ScoreNumberModifier())
+                    } .modifier(ScoreContainerModifier())
                 }
-                .padding(.vertical,4)
-                .padding(.horizontal, 16)
-                .frame(minWidth: 128)
-                .background(
-                    Capsule()
-                        .foregroundColor(Color("ColorTransparentBlack"))
-                    )
+                
+                
+                
                 //slot machine
                 //footer
                 
