@@ -9,12 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // MARK: - PROPERTIES
+    
+    let symvols = ["gfx-bell","gfx-cherry","gfx-coin",
+    "gfx-grape","gfx-seven","gfx-strawberry"]
+    
+    @State private var reels: Array = [0,1,2]
+    //info showing View Button 이벤트
+    @State private var showingInfoView: Bool = false
     
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [Color("ColorPink"), Color("ColorPurple")]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
             
-            //interface
+            // MARK: - interface
             VStack(alignment: .center, spacing: 5) {
                 
                 LogoView()
@@ -56,7 +64,7 @@ struct ContentView: View {
                     //REEl #1
                     ZStack {
                         RealView()
-                        Image("gfx-bell")
+                        Image(symvols[reels[0]])
                             .resizable()
                             .modifier(ImageModifier())
                     }
@@ -65,7 +73,7 @@ struct ContentView: View {
                         //REEl #2
                         ZStack {
                             RealView()
-                            Image("gfx-seven")
+                            Image(symvols[reels[1]])
                                 .resizable()
                                 .modifier(ImageModifier())
                         }
@@ -75,7 +83,7 @@ struct ContentView: View {
                         //REEl #3
                         ZStack {
                             RealView()
-                            Image("gfx-cherry")
+                            Image(symvols[reels[2]])
                                 .resizable()
                                 .modifier(ImageModifier())
                         }
@@ -97,6 +105,69 @@ struct ContentView: View {
                 //footer
                 
                 Spacer()
+                
+                
+                HStack {
+                    // bet 20
+                    HStack(alignment: .center, spacing: 10) {
+                        Button(action: {
+                            print("Bet 20 coins")
+                        }) {
+                            Text("20")
+                                .fontWeight(.heavy)
+                                .foregroundColor(Color.white)
+                                .modifier(BetNumberModifier())
+                              
+                        }
+                        .modifier(BetCapsuleModifier())
+                        
+//                        .background(
+//                            Capsule()
+//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"),Color("ColorPurple")]), sta rtPoint: .top, endPoint: .bottom))
+//                                .modifier(ShadowModifier())
+//                        )
+//                        .padding(3)
+//                        .background(
+//                            Capsule()
+//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"), Color("ColorPurple")]), startPoint: .bottom , endPoint: .top))
+//                    )
+                     Image("gfx-casino-chips")
+                            .resizable()
+                            .opacity(0)
+                            .modifier(CasinoChipsModifier())
+                    }
+                    
+                    
+                    
+                    // bet 10
+                    HStack(alignment: .center, spacing: 10) {
+                        Button(action: {
+                            print("Bet 10 coins")
+                        }) {
+                            Text("10")
+                                .fontWeight(.heavy)
+                                .foregroundColor(Color.yellow)
+                                .modifier(BetNumberModifier())
+                              
+                        }
+                        .modifier(BetCapsuleModifier())
+                        
+//                        .background(
+//                            Capsule()
+//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"),Color("ColorPurple")]), startPoint: .top, endPoint: .bottom))
+//                                .modifier(ShadowModifier())
+//                        )
+//                        .padding(3)
+//                        .background(
+//                            Capsule()
+//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"), Color("ColorPurple")]), startPoint: .bottom , endPoint: .top))
+//                    )
+                     Image("gfx-casino-chips")
+                            .resizable()
+                            .opacity(1)
+                            .modifier(CasinoChipsModifier())
+                    }
+                }
             }
             //buttons
             .overlay(
@@ -112,7 +183,7 @@ struct ContentView: View {
             .overlay(
                 //info
                 Button(action: {
-                    print("Info View")
+                    self.showingInfoView = true
                 }) {
                     Image(systemName: "info.circle")
                 }
@@ -121,8 +192,10 @@ struct ContentView: View {
             )
             .padding()
             .frame(maxWidth: 720)
-            
-            //popup
+            //MARK: -popup
+        } // Zstack 인포뷰 눌르면 아래서 정보 인포뷰 띄우기
+        .sheet(isPresented: $showingInfoView) {
+            InfoView()
         }
     }
 }
