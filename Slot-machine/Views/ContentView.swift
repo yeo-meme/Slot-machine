@@ -11,12 +11,30 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     
-    let symvols = ["gfx-bell","gfx-cherry","gfx-coin",
+    let symbols = ["gfx-bell","gfx-cherry","gfx-coin",
     "gfx-grape","gfx-seven","gfx-strawberry"]
     
     @State private var reels: Array = [0,1,2]
     //info showing View Button 이벤트
     @State private var showingInfoView: Bool = false
+    
+    // MARK : - FUNCTIONS
+    
+    func spinReels() {
+        reels[0] = Int.random(in: 0...symbols.count-1)
+        reels[1] = Int.random(in: 0...symbols.count-1)
+        reels[2] = Int.random(in: 0...symbols.count-1)
+    }
+    
+    // SPIN THE REELS
+    // CEHCK THE WINNING
+    // PLAYER WINS
+    // NEW HIGHSCORE
+    // PLAYER LOSES
+    // GAME IS OVER
+    
+    
+     
     
     var body: some View {
         ZStack{
@@ -64,7 +82,7 @@ struct ContentView: View {
                     //REEl #1
                     ZStack {
                         RealView()
-                        Image(symvols[reels[0]])
+                        Image(symbols[reels[0]])
                             .resizable()
                             .modifier(ImageModifier())
                     }
@@ -73,7 +91,7 @@ struct ContentView: View {
                         //REEl #2
                         ZStack {
                             RealView()
-                            Image(symvols[reels[1]])
+                            Image(symbols[reels[1]])
                                 .resizable()
                                 .modifier(ImageModifier())
                         }
@@ -83,7 +101,7 @@ struct ContentView: View {
                         //REEl #3
                         ZStack {
                             RealView()
-                            Image(symvols[reels[2]])
+                            Image(symbols[reels[2]])
                                 .resizable()
                                 .modifier(ImageModifier())
                         }
@@ -92,7 +110,7 @@ struct ContentView: View {
                     
                     //REEl SPIN BUTTON
                     Button(action: {
-                        print("spin the reels")
+                        self.spinReels()
                     }) {
                         Image("gfx-spin")
                             .resizable()
