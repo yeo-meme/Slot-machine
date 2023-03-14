@@ -14,7 +14,7 @@ struct ContentView: View {
     let symbols = ["gfx-bell","gfx-cherry","gfx-coin",
     "gfx-grape","gfx-seven","gfx-strawberry"]
     
-    @State private var highscore: Int = 0
+    @State private var highscore: Int = UserDefaults.standard.integer(forKey: "HighScore")
     @State private var coins : Int = 100
     @State private var betAmount : Int = 10
     @State private var reels: Array = [0,1,2]
@@ -58,6 +58,7 @@ struct ContentView: View {
     //최고점 갱신
     func newHighScore() {
         highscore = coins
+        UserDefaults.standard.set(highscore, forKey: "HighScore")
     }
     
     func playerLoses() {
@@ -83,6 +84,13 @@ struct ContentView: View {
         }
     }
     
+    
+    func resetGame() {
+        UserDefaults.standard.set(0, forKey: "HighScore")
+        highscore = 0
+        coins = 100
+        activateBet10()  
+    }
     // SPIN THE REELS
     // CEHCK THE WINNING
     // PLAYER WINS
@@ -252,12 +260,13 @@ struct ContentView: View {
                     }
                 }
             }
-            //buttons
+            // MARK: - buttons
             .overlay(
                 Button(action: {
+                    self.resetGame()
                     print("Reset the game")
                 }){
-                    Image(systemName: "arrow.2.circleapth.circle")
+                    Image(systemName: "arrow.2.circlepath.circle")
                 }
                     .modifier(ButtonModifier()),
                 alignment: .topLeading
@@ -271,7 +280,7 @@ struct ContentView: View {
                     Image(systemName: "info.circle")
                 }
                     .modifier(ButtonModifier()),
-                alignment: .topLeading
+                alignment: .topTrailing
             )
             .padding()
             .frame(maxWidth: 720)
