@@ -23,6 +23,7 @@ struct ContentView: View {
     @State private var isActiveBet10: Bool = true
     @State private var isActiveBet20: Bool = false
     @State private var showingModal : Bool = false
+    @State private var animatingSymbol : Bool = false
     
     // MARK : - FUNCTIONS
     
@@ -141,46 +142,77 @@ struct ContentView: View {
                 
                 
                 
-                //slot machine
+                // MARK: -slot machine
                 
                 VStack(alignment: .center, spacing: 0) {
-                    //REEl #1
+                    // MARK: - REEl #1
                     ZStack {
                         RealView()
                         Image(symbols[reels[0]])
                             .resizable()
                             .modifier(ImageModifier())
+                            .opacity(animatingSymbol ?  1: 0)
+                            .offset(y: animatingSymbol ? 0 : -50)
+                            .animation(.easeOut(duration:  Double.random(in: 0.5...0.7)))
+                            .onAppear(perform: {
+                                self.animatingSymbol.toggle()
+                            })
                     }
                     
                     HStack(alignment: .center, spacing: 0) {
-                        //REEl #2
+                        //MARK: - REEl #2
                         ZStack {
                             RealView()
                             Image(symbols[reels[1]])
                                 .resizable()
                                 .modifier(ImageModifier())
+                                .opacity(animatingSymbol ?  1: 0)
+                                .offset(y: animatingSymbol ? 0 : -50)
+                                .animation(.easeOut(duration: Double.random(in: 0.7...0.9)))
+                                .onAppear(perform: {
+                                    self.animatingSymbol.toggle()
+                                })
                         }
                         
                         Spacer()
                         
-                        //REEl #3
+                        //MARK: -REEl #3
                         ZStack {
                             RealView()
                             Image(symbols[reels[2]])
                                 .resizable()
                                 .modifier(ImageModifier())
+                                .opacity(animatingSymbol ?  1: 0)
+                                .offset(y: animatingSymbol ? 0 : -50)
+                                .animation(.easeOut(duration: Double.random(in: 0.9...1.1)))
+                                .onAppear(perform: {
+                                    self.animatingSymbol.toggle()
+                                })
                         }
                     }
                     .frame(maxWidth: 500)
                     
                     // MARK: - REEl SPIN BUTTON
                     Button(action: {
+                        
+                        //1.SET DEFAULT STATE: NO ANIMAITON
+                        withAnimation {
+                            self.animatingSymbol = false
+                        }
+                        
+                        //2. 심볼이 바뀐다 릴을 돌릴때
                         self.spinReels()
                         
-                        //Chck winning
+                        
+                        //3. 트리거 애니메이션 후 심볼이 바뀐다
+                        withAnimation{
+                            self.animatingSymbol = true
+                        }
+                        
+                        //4.Chck winning
                         self.checkWinning()
                         
-                        // GAME IS OVER
+                        //5. GAME IS OVER
                         self.isGameOver()
                     }) {
                         Image("gfx-spin")
@@ -197,7 +229,7 @@ struct ContentView: View {
                 
                 
                 HStack {
-                    //MARK : - bet 20
+                    //MARK: - bet 20
                     HStack(alignment: .center, spacing: 10) {
                         Button(action: {
                             self.activateBet20()
@@ -210,26 +242,17 @@ struct ContentView: View {
                               
                         }
                         .modifier(BetCapsuleModifier())
-                        
-//                        .background(
-//                            Capsule()
-//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"),Color("ColorPurple")]), sta rtPoint: .top, endPoint: .bottom))
-//                                .modifier(ShadowModifier())
-//                        )
-//                        .padding(3)
-//                        .background(
-//                            Capsule()
-//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"), Color("ColorPurple")]), startPoint: .bottom , endPoint: .top))
-//                    )
+                     
                      Image("gfx-casino-chips")
                             .resizable()
                             .opacity(isActiveBet20 ? 1 : 0)
+                            .offset(x: isActiveBet20 ? 0 : 20)
                             .modifier(CasinoChipsModifier())
                     }
                     
                     
                     
-                    // MARK : -bet 10
+                    // MARK: -bet 10
                     HStack(alignment: .center, spacing: 10) {
                         Button(action: {
                             print("Bet 10 coins")
@@ -242,19 +265,10 @@ struct ContentView: View {
                               
                         }
                         .modifier(BetCapsuleModifier())
-                        
-//                        .background(
-//                            Capsule()
-//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"),Color("ColorPurple")]), startPoint: .top, endPoint: .bottom))
-//                                .modifier(ShadowModifier())
-//                        )
-//                        .padding(3)
-//                        .background(
-//                            Capsule()
-//                                .fill(LinearGradient(gradient: Gradient(colors: [Color("ColorPink"), Color("ColorPurple")]), startPoint: .bottom , endPoint: .top))
-//                    )
+         
                      Image("gfx-casino-chips")
                             .resizable()
+                            .offset(x: isActiveBet10 ? 0 : -20)
                             .opacity(isActiveBet10 ? 1 : 0)
                             .modifier(CasinoChipsModifier())
                     }
