@@ -14,17 +14,67 @@ struct ContentView: View {
     let symbols = ["gfx-bell","gfx-cherry","gfx-coin",
     "gfx-grape","gfx-seven","gfx-strawberry"]
     
+    @State private var highscore: Int = 0
+    @State private var coins : Int = 100
+    @State private var betAmount : Int = 10
     @State private var reels: Array = [0,1,2]
     //info showing View Button 이벤트
     @State private var showingInfoView: Bool = false
+    @State private var isActiveBet10: Bool = false
+    @State private var isActiveBet20: Bool = false
     
     // MARK : - FUNCTIONS
     
     func spinReels() {
-        reels[0] = Int.random(in: 0...symbols.count-1)
-        reels[1] = Int.random(in: 0...symbols.count-1)
-        reels[2] = Int.random(in: 0...symbols.count-1)
+//        reels[0] = Int.random(in: 0...symbols.count-1)
+//        reels[1] = Int.random(in: 0...symbols.count-1)
+//        reels[2] = Int.random(in: 0...symbols.count-1)
+        
+        reels = reels.map({ _ in
+            Int.random(in: 0...symbols.count - 1)
+        })
     }
+    
+    func checkWinning() {
+        if reels[0] == reels[1] && reels[1] == reels[2] && reels[0] == reels[2] {
+            
+            playerWins()
+            // PLAYER WINS
+            // NEW HIGHSCORE
+            if coins > highscore {
+                newHighScore()
+            }
+        } else {
+            // PLAYER LOSES
+            playerLoses()
+        }
+    }
+    
+    func playerWins() {
+        coins += betAmount * 10
+    }
+    
+    //최고점 갱신
+    func newHighScore() {
+        highscore = coins
+    }
+    
+    func playerLoses() {
+        coins -= betAmount
+    }
+    
+    func activateBet20() {
+        betAmount = 20
+        isActiveBet20 = true
+        isActiveBet10 = false
+    }
+    
+    func activateBet10() {
+        betAmount = 10
+        isActiveBet10 = true
+        isActiveBet20 = false
+    }
+    
     
     // SPIN THE REELS
     // CEHCK THE WINNING
@@ -56,7 +106,7 @@ struct ContentView: View {
                             .scoreLabelStyle()
                             .multilineTextAlignment(.trailing)
                         
-                        Text("100")
+                        Text("\(coins)")
                             .scoreNumberStyle()
                             .modifier(ScoreNumberModifier())
                     }
@@ -64,7 +114,7 @@ struct ContentView: View {
                     Spacer()
                     
                     HStack{
-                        Text("200".uppercased())
+                        Text("\(highscore)")
                             .scoreNumberStyle()
                             .multilineTextAlignment(.trailing)
                         
@@ -108,9 +158,12 @@ struct ContentView: View {
                     }
                     .frame(maxWidth: 500)
                     
-                    //REEl SPIN BUTTON
+                    // MARK: - REEl SPIN BUTTON
                     Button(action: {
                         self.spinReels()
+                        
+                        //Chck winning
+                        self.checkWinning()
                     }) {
                         Image("gfx-spin")
                             .resizable()
@@ -126,14 +179,15 @@ struct ContentView: View {
                 
                 
                 HStack {
-                    // bet 20
+                    //MARK : - bet 20
                     HStack(alignment: .center, spacing: 10) {
                         Button(action: {
+                            self.activateBet20()
                             print("Bet 20 coins")
                         }) {
                             Text("20")
                                 .fontWeight(.heavy)
-                                .foregroundColor(Color.white)
+                                .foregroundColor(isActiveBet20 ? Color("ColorYellow") : Color.white)
                                 .modifier(BetNumberModifier())
                               
                         }
@@ -151,20 +205,21 @@ struct ContentView: View {
 //                    )
                      Image("gfx-casino-chips")
                             .resizable()
-                            .opacity(0)
+                            .opacity(isActiveBet20 ? 1 : 0)
                             .modifier(CasinoChipsModifier())
                     }
                     
                     
                     
-                    // bet 10
+                    // MARK : -bet 10
                     HStack(alignment: .center, spacing: 10) {
                         Button(action: {
                             print("Bet 10 coins")
+                            self.activateBet10()
                         }) {
                             Text("10")
                                 .fontWeight(.heavy)
-                                .foregroundColor(Color.yellow)
+                                .foregroundColor(isActiveBet10 ? Color("ColorYellow") : Color.white)
                                 .modifier(BetNumberModifier())
                               
                         }
@@ -182,7 +237,7 @@ struct ContentView: View {
 //                    )
                      Image("gfx-casino-chips")
                             .resizable()
-                            .opacity(1)
+                            .opacity(isActiveBet10 ? 1 : 0)
                             .modifier(CasinoChipsModifier())
                     }
                 }
