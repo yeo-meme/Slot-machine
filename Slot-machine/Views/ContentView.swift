@@ -20,8 +20,9 @@ struct ContentView: View {
     @State private var reels: Array = [0,1,2]
     //info showing View Button 이벤트
     @State private var showingInfoView: Bool = false
-    @State private var isActiveBet10: Bool = false
+    @State private var isActiveBet10: Bool = true
     @State private var isActiveBet20: Bool = false
+    @State private var showingModal : Bool = true
     
     // MARK : - FUNCTIONS
     
@@ -75,6 +76,12 @@ struct ContentView: View {
         isActiveBet20 = false
     }
     
+    func isGameOver() {
+        if coins <= 0 {
+            // show modal window
+            showingModal = true
+        }
+    }
     
     // SPIN THE REELS
     // CEHCK THE WINNING
@@ -164,6 +171,9 @@ struct ContentView: View {
                         
                         //Chck winning
                         self.checkWinning()
+                        
+                        // GAME IS OVER
+                        self.isGameOver()
                     }) {
                         Image("gfx-spin")
                             .resizable()
@@ -265,7 +275,14 @@ struct ContentView: View {
             )
             .padding()
             .frame(maxWidth: 720)
+            .blur(radius: $showingModal.wrappedValue ? 5 : 0, opaque: false)
+            
             //MARK: -popup
+            if $showingModal.wrappedValue{
+                ZStack{
+                    Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)).edgesIgnoringSafeArea(.all)
+                }
+            }
         } // Zstack 인포뷰 눌르면 아래서 정보 인포뷰 띄우기
         .sheet(isPresented: $showingInfoView) {
             InfoView()
