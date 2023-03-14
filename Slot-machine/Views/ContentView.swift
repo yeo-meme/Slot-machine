@@ -280,7 +280,19 @@ struct ContentView: View {
             //MARK: -popup
             if $showingModal.wrappedValue{
                 ZStack{
-                    Color(UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)).edgesIgnoringSafeArea(.all)
+                    Color("ColorTransparentBlack").edgesIgnoringSafeArea(.all)
+                    
+                    
+                    //MOADL
+                    VStack(spacing: 0) {
+                        //  TITLE
+                        Text("GAME OVER")
+                    }
+                    
+                    .frame(minWidth: 280, idealWidth: 280, maxWidth: 320, minHeight: 260, idealHeight: 280, maxHeight: 320, alignment: .center)
+                    .background(Color.white)
+                    .cornerRadius(20)
+                    .shadow(color: Color("ColorTransparentBlack"), radius: 6, x:0, y: 8)
                 }
             }
         } // Zstack 인포뷰 눌르면 아래서 정보 인포뷰 띄우기
