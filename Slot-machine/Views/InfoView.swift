@@ -31,6 +31,7 @@ struct InfoView: View {
         .padding(.top, 40)
         .overlay(
          Button(action: {
+             audioPlayer?.stop()
              //actiopn
              self.presentationMode.wrappedValue.dismiss()
          }) {
@@ -42,6 +43,9 @@ struct InfoView: View {
             .accentColor(Color.secondary)
          , alignment: .topTrailing
          )
+        .onAppear(perform: {
+            playSound(sound: "background-music", type: "mp3")
+        })
     }
 }
 

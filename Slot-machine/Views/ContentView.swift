@@ -14,6 +14,8 @@ struct ContentView: View {
     let symbols = ["gfx-bell","gfx-cherry","gfx-coin",
     "gfx-grape","gfx-seven","gfx-strawberry"]
     
+    let haptics = UINotificationFeedbackGenerator()
+    
     @State private var highscore: Int = UserDefaults.standard.integer(forKey: "HighScore")
     @State private var coins : Int = 100
     @State private var betAmount : Int = 10
@@ -24,6 +26,7 @@ struct ContentView: View {
     @State private var isActiveBet20: Bool = false
     @State private var showingModal : Bool = false
     @State private var animatingSymbol : Bool = false
+    @State private var animationgModal : Bool = false
     
     // MARK : - FUNCTIONS
     
@@ -35,6 +38,8 @@ struct ContentView: View {
         reels = reels.map({ _ in
             Int.random(in: 0...symbols.count - 1)
         })
+        playSound(sound: "spin", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
     func checkWinning() {
@@ -45,6 +50,8 @@ struct ContentView: View {
             // NEW HIGHSCORE
             if coins > highscore {
                 newHighScore()
+            } else {
+                playSound(sound: "win", type: "mp3")
             }
         } else {
             // PLAYER LOSES
@@ -60,6 +67,7 @@ struct ContentView: View {
     func newHighScore() {
         highscore = coins
         UserDefaults.standard.set(highscore, forKey: "HighScore")
+        playSound(sound: "high-score", type: "mp3")
     }
     
     func playerLoses() {
@@ -70,18 +78,23 @@ struct ContentView: View {
         betAmount = 20
         isActiveBet20 = true
         isActiveBet10 = false
+        playSound(sound: "casino-chips", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
     func activateBet10() {
         betAmount = 10
         isActiveBet10 = true
         isActiveBet20 = false
+        playSound(sound: "casino-chips", type: "mp3")
+        haptics.notificationOccurred(.success)
     }
     
     func isGameOver() {
         if coins <= 0 {
             // show modal window
             showingModal = true
+            playSound(sound: "game-over", type: "mp3")
         }
     }
     
@@ -90,7 +103,8 @@ struct ContentView: View {
         UserDefaults.standard.set(0, forKey: "HighScore")
         highscore = 0
         coins = 100
-        activateBet10()  
+        activateBet10()
+        playSound(sound: "chimeup", type: "mp3")
     }
     // SPIN THE REELS
     // CEHCK THE WINNING
@@ -145,7 +159,7 @@ struct ContentView: View {
                 // MARK: -slot machine
                 
                 VStack(alignment: .center, spacing: 0) {
-                    // MARK: - REEl #1
+                    // MARK:- REEl #1
                     ZStack {
                         RealView()
                         Image(symbols[reels[0]])
@@ -156,6 +170,7 @@ struct ContentView: View {
                             .animation(.easeOut(duration:  Double.random(in: 0.5...0.7)))
                             .onAppear(perform: {
                                 self.animatingSymbol.toggle()
+                                playSound(sound: "riseup", type: "mp3")
                             })
                     }
                     
@@ -251,6 +266,7 @@ struct ContentView: View {
                     }
                     
                     
+                    Spacer()
                     
                     // MARK: -bet 10
                     HStack(alignment: .center, spacing: 10) {
@@ -285,7 +301,6 @@ struct ContentView: View {
                     .modifier(ButtonModifier()),
                 alignment: .topLeading
             )
-            
             .overlay(
                 //info
                 Button(action: {
@@ -336,6 +351,8 @@ struct ContentView: View {
                             
                             Button(action: {
                                 self.showingModal = false
+                                self.animationgModal = false
+                                self.activateBet10()
                                 self.coins = 100
                             }) {
                                 Text("New Game".uppercased())
@@ -360,6 +377,12 @@ struct ContentView: View {
                     .background(Color.white)
                     .cornerRadius(20)
                     .shadow(color: Color("ColorTransparentBlack"), radius: 6, x:0, y: 8)
+                    .opacity($animationgModal.wrappedValue ? 1 : 0)
+                    .offset(y: $animationgModal.wrappedValue ? 0 : -100)
+                    .animation(Animation.spring(response: 0.6, dampingFraction: 1.0, blendDuration: 1.0))
+                    .onAppear(perform: {
+                        self.animationgModal = true
+                    })
                 }
             }
         } // Zstack 인포뷰 눌르면 아래서 정보 인포뷰 띄우기
